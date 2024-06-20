@@ -18,10 +18,8 @@ function App() {
            <Route path="/:idMeal/youtube" element={<Youtube/>}/>
            
        </Routes>
-       <Routes>
-       <Route path="/" element={<Findmeal/>}/>
-       <Route path="/:findmeal" element={<Findmeal/>}/>
-       </Routes>
+       
+       
      
      </>
   );
