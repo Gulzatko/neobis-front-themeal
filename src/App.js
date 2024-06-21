@@ -12,10 +12,11 @@ function App() {
   return (
    <>
      <Header/>
-     <Routes>
+     <Routes >
            <Route path="/"  element={<RandomMeal/>}/>
-           <Route path="/:idMeal" element={<Ingredient/>}/>
-           <Route path="/:idMeal/youtube" element={<Youtube/>}/>
+           <Route path="/:id" element={<Ingredient/>}/>
+          
+          
            
        </Routes>
        

@@ -24,13 +24,15 @@ const RandomMeal = () => {
             <h1>Meal of the Day</h1>
 
             {dishes.map((meal) => (
-               <Link key={meal.idMeal} to={`/dishes/${meal.idMeal}`}>
+               <Link key={meal.idMeal} to={`/dishes`}>
                   <h1>{meal.strMeal}</h1>
                   <h2>{meal.strCategory}</h2>
                   <img src={meal.strMealThumb}></img>
                </Link>
+              
             ))}
          </ul>
+         
          <Findmeal />
       </div>
    );

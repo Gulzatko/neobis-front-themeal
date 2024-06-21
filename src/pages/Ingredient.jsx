@@ -1,42 +1,81 @@
 
-import{useParams, Link, useNavigate} from "react-router-dom";
+import{useParams, useNavigate} from "react-router-dom";
 import React,{useState, useEffect } from 'react';
-import axios from 'axios';
+
+import {getMealDetails} from "../api";
 
 
-const Ingredient=()=>  {
-  const {idMeal}= useParams();
-  const [dish, setDishes] = useState(null);
+
+
+const  Ingredient=()=>  {
+  const {id}= useParams();
+  
+  const[mealData, setMealData]=useState([]);
+  const [mealYoutube, setMealYoutube]=useState();
+  const [mealIngredients, setMealIngredients]=useState([])
+
   const navigate = useNavigate();
-
   const goBack =()=> navigate(-1);
-  useEffect(()=>{
-      axios.get("https://www.themealdb.com/api/json/v1/1/random.php/i=${idMeal}")
-      .then(res =>{
-           console.log(res);
-           setDishes(res.data.meals);
-      })
-      .catch(err=>{
-          console.log(err)
-      })
-  },[dish])
+
+  function getYoutubedEmbed(url){
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+   const match = url.match(regExp);
+   return(match && match[2].length ===11) 
+   ? match[2]: null;
+  }
+  
+ useEffect(()=>{
+  getMealDetails(id).then((data)=>{
+        const meal = data.data.meals[0];
+        console.log(meal);
+        setMealData(meal);
+        let mealCount = 1;
+        const mealIngredientsArray = []
+         setMealYoutube(getYoutubedEmbed(meal.strYoutube))
+
+         while(meal[`strIngredient${mealCount}`]){
+            const mealData = {
+                ingredient : meal[`strIngredient${mealCount}`],
+                measure: meal[`strMeasure${mealCount}`]
+            }
+            mealIngredientsArray.push(mealData);
+            mealCount++
+         }
+         setMealIngredients(mealIngredientsArray)
+
+    })
+ },[])
  
  
-  return (
-      <div>
+  return ( <>
+      <div className="meal-info-container">
         <button onClick={goBack}>Go back</button>
-        {dish && (
-            <>
-             <h1>{dish.strMeal}</h1>
-             <p>
-    
-             </p>
-             <img src={dish.strMealThumb}/>
-             <Link to={`/dishes/${idMeal}/youtube`}>Watch on Youtube Channel</Link>
-            </>
-        )}
+        <div className = "meal-info">
+            <h1>{mealData.strMeal}</h1>
+            <h3>{mealData.strCategory}</h3>
+            <h3>{mealData.strArea}</h3>
+            <div className="meal-ingredients">
+              {mealIngredients.map((value, index)=>
+               <h2 key={value.ingredient}>
+                {value.ingredient}-
+                 <strong>{value.measure}</strong>
+               </h2>)}
+            </div>
+
+        </div>
+        <div className="meal-instruction">
+            <h1>Instruction</h1>
+            <p>{mealData.strInstructions}</p>
+            {/* <iframe className="meal_iframe" allow ="fullscreen;"
+              src={mealData.strYoutube}></iframe> */}
+
+        </div>
+         
+           
      </div>
+     </>
   )
   
 }
 export {Ingredient};
+
