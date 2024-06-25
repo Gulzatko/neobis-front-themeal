@@ -1,28 +1,26 @@
 import './App.css';
 import {Routes,Route} from 'react-router-dom';
 import {Header} from './components/Header';
-import {Mainpage} from './components/Mainpage';
+
 import {RandomMeal} from './pages/RandomMeal';
 import {Findmeal } from './pages/Findmeal';
 import { Ingredient } from './pages/Ingredient';
-import{Youtube} from './pages/Youtube';
+import { Layout } from "./components/Layout";
 
 
 function App() {
   return (
    <>
-     <Header/>
-     <Routes >
-           <Route path="/"  element={<RandomMeal/>}/>
+    
+      <Routes>
+         <Route path="/" element={<Layout/>}>
+           <Route index  element={<RandomMeal/>}/>
            <Route path="/:id" element={<Ingredient/>}/>
           
+          </Route>
           
-           
-       </Routes>
-       
-       
-     
-     </>
+      </Routes>
+      </>
   );
 }
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, Link} from "react-router-dom";
 import axios from "axios";
 
-const Findmeal = () => {
+export function Findmeal () {
    const { findmeal } = useParams([]);
    const [searchDish, setSearchDish] = useState([]);
 
@@ -40,16 +40,15 @@ const Findmeal = () => {
             <input type="text" value={searchVal} onChange={handleSearch} />
             <button type="submit">Search</button>
          </form>
-         <Link to="/findmeal"> </Link>
-         {searchDish.map((dish) => (
-            <Link key={dish.idMeal} to={`/findmeal/${dish.idMeal}`}>
-               <li>
+        {searchDish.map((dish) => (
+              
+               <Link to={`/${dish.idMeal}`}>
                   <h1>{dish.strMeal}</h1>
                   <img src={dish.strMealThumb}></img>
-               </li>
-            </Link>
+               </Link>
+           
          ))}
       </>
    );
 };
-export { Findmeal };
+
