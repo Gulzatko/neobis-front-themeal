@@ -2,7 +2,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-
+import styles from "./Ingredient.module.scss"
 
 const Ingredient=()=> {
   const { id } = useParams();
@@ -45,7 +45,7 @@ const Ingredient=()=> {
     };
 
     return (
-      <div>
+      <div className={styles.ingredient}>
         {mealData ?(
           <>
             <div className="ingredients_container">

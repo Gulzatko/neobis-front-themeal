@@ -1,0 +1,42 @@
+.findmeal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.findmeal_h1{
+    color: yellow;
+   font-weight:500 ;
+    font-size: 36px;
+}
+.findmeal_form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.findmeal_input{
+    outline:none;
+    margin: 10px 10px;
+    width: 250px;
+    height: 30px;
+    border-radius: 25px;
+    padding: 10px 10px;
+    border: 2px solid orange;
+}
+.findmeal_btn{
+    width:100px;
+    height: 30px;
+    padding: 10px 10px 15px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 25px;
+    background: orange;
+    color: white;
+    box-shadow:2px 1px yellow;
+}
+.findmeal_btn:hover{
+    background: yellow;
+    box-shadow:2px 1px orange;
+    color: orange;
+}

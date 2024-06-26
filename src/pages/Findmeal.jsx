@@ -43,9 +43,9 @@ export function Findmeal () {
          </form>
         {searchDish.map((dish) => (
               
-               <Link to={`/${dish.idMeal}`}>
-                  <h1>{dish.strMeal}</h1>
-                  <img src={dish.strMealThumb}></img>
+               <Link className={styles.findmeal_link} to={`/${dish.idMeal}`}>
+                  <h1 className={styles.link_h1}>{dish.strMeal}</h1>
+                  <img className={styles.findmeal_img} src={dish.strMealThumb}></img>
                </Link>
            
          ))}
