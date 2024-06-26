@@ -1,16 +1,14 @@
-import './App.css';
+import  styles from './App.module.scss';
 import {Routes,Route} from 'react-router-dom';
-import {Header} from './components/Header';
-
 import {RandomMeal} from './pages/RandomMeal';
-import {Findmeal } from './pages/Findmeal';
+
 import { Ingredient } from './pages/Ingredient';
 import { Layout } from "./components/Layout";
 
 
 function App() {
   return (
-   <>
+   <div className={styles.container}>
     
       <Routes>
          <Route path="/" element={<Layout/>}>
@@ -20,7 +18,7 @@ function App() {
           </Route>
           
       </Routes>
-      </>
+      </div>
   );
 }
 

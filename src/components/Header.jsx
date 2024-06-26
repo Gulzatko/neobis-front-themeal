@@ -1,5 +1,5 @@
-import React, {useState, useEffect}  from 'react';
-import '../styles/Header.css';
+
+import styles from './Header.module.scss';
 
  import axios from 'axios';
 
@@ -7,13 +7,11 @@ import '../styles/Header.css';
  
 
     return (
-       <>
-         <div className="header">
-             <h1>The Meal</h1>
+      
+         <div className={styles.header}>
+             <h1 className={styles.header_h1}>The Meal</h1>
         </div>
-       
-
-       </>
+        
         
     )
   }

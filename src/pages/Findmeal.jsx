@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, Link} from "react-router-dom";
 import axios from "axios";
+import styles from './Findmeal.module.scss';
 
 export function Findmeal () {
    const { findmeal } = useParams([]);
@@ -34,11 +35,11 @@ export function Findmeal () {
    };
 
    return (
-      <>
-         <h1>Find your Meal</h1>
-         <form autoComplete="off" onSubmit={handleSubmit}>
-            <input type="text" value={searchVal} onChange={handleSearch} />
-            <button type="submit">Search</button>
+      <div className={styles.findmeal}>
+         <h1 className={styles.findmeal_h1}>Find your Meal</h1>
+         <form className={styles.findmeal_form} autoComplete="off" onSubmit={handleSubmit}>
+            <input className={styles.findmeal_input} type="text" value={searchVal} onChange={handleSearch} />
+            <button className={styles.findmeal_btn} type="submit">Search</button>
          </form>
         {searchDish.map((dish) => (
               
@@ -48,7 +49,7 @@ export function Findmeal () {
                </Link>
            
          ))}
-      </>
+      </div>
    );
 };
 
